@@ -14,6 +14,7 @@ class Solution:
             if (nums[left_pointer] + nums[left_pointer + 1] > nums[right_pointer] and
                 nums[left_pointer] + nums[right_pointer] > nums[left_pointer + 1] and
                 nums[left_pointer + 1] + nums[right_pointer] > nums[left_pointer]):
+                    # set perimeter the maximum of current or the previous
                     perimeter = max(perimeter, nums[left_pointer] + nums[left_pointer + 1] + nums[right_pointer])
             
             # increment left & right pointer no matter what
