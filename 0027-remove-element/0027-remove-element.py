@@ -23,13 +23,8 @@ class Solution:
             
             # swap if left_pointer is '_' & right_pointer is number
             if nums[left_pointer] == '_' and nums[right_pointer] != '_':
-                print('left: ', left_pointer)
-                print('right: ', right_pointer)
-                print('before: ', nums[left_pointer], ' and ', nums[right_pointer])
-                temp = nums[left_pointer]
-                nums[left_pointer] = nums[right_pointer]
-                nums[right_pointer] = temp
-                print('after: ', nums[left_pointer], ' and ', nums[right_pointer])
+                # swap '_' with num value
+                nums[left_pointer], nums[right_pointer] = nums[right_pointer], nums[left_pointer]
                 left_pointer += 1
                 right_pointer -= 1
             
