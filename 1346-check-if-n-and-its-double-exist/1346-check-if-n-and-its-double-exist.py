@@ -4,7 +4,6 @@ class Solution:
         right_pointer = 1
         
         arr.sort()
-        print(arr)
         
         # iterate through using two pointers
         while right_pointer <= len(arr) - 1 and left_pointer <= len(arr) - 2:
