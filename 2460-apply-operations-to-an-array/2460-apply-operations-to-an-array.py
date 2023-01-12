@@ -6,10 +6,12 @@ class Solution:
         # edge case when last number is diff. from 0
         
         while right_pointer < len(nums):
+            # operation given
             if right_pointer < len(nums) - 1 and nums[right_pointer] == nums[right_pointer + 1]:
                 nums[right_pointer] *= 2
                 nums[right_pointer + 1] = 0
                 
+            # shift all the 0s after operation
             if nums[right_pointer] != 0:
                 nums[right_pointer], nums[left_pointer] = nums[left_pointer], nums[right_pointer]
                 left_pointer += 1
