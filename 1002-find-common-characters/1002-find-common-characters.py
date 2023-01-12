@@ -24,9 +24,6 @@ class Solution:
                 minim = min(minim, compute[j][i])
                 
             ans += [chr(i + 97)] * minim
-            
-
-        print(ans)
         
         return ans
         
