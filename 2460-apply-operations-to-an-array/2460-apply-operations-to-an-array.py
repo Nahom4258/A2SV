@@ -1,19 +1,19 @@
 class Solution:
     def applyOperations(self, nums: List[int]) -> List[int]:
-        # apply operations onto the array
-        for i in range(len(nums) - 1):
-            if nums[i] == nums[i + 1]:
-                nums[i] *= 2
-                nums[i + 1] = 0
+        left_pointer = 0
+        right_pointer = 0
+        
+        # edge case when last number is diff. from 0
+        
+        while right_pointer < len(nums):
+            if right_pointer < len(nums) - 1 and nums[right_pointer] == nums[right_pointer + 1]:
+                nums[right_pointer] *= 2
+                nums[right_pointer + 1] = 0
                 
-        # shift all the 0's to the end
-        read = 0
-        write = 0
-        while read < len(nums):
-            if nums[read] != 0:
-                nums[read], nums[write] = nums[write], nums[read]
-                write += 1
-            
-            read += 1
+            if nums[right_pointer] != 0:
+                nums[right_pointer], nums[left_pointer] = nums[left_pointer], nums[right_pointer]
+                left_pointer += 1
+                
+            right_pointer += 1
             
         return nums
