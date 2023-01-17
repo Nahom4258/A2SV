@@ -15,8 +15,5 @@ class Solution:
                 left_ptr = 0
                 right_ptr = left_ptr + 1
                 list_size -= 1
-                
-        print(heights)
-        print(names)
         
         return names
