@@ -7,8 +7,6 @@ class Solution:
         left_ptr = 0
         right_ptr = len(sqs) - 1
         
-        print(sqs)
-        
         while left_ptr <= right_ptr:
             if sqs[left_ptr] + sqs[right_ptr] == c:
                 return True
