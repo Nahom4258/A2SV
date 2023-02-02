@@ -32,10 +32,5 @@ class Solution:
         if not current.next:
             prev.next = None
             return head
-            
-        print('curr: ', current.val)
-        print('prev: ', prev.val)
-        
-        return head
         
         
