@@ -1,14 +1,18 @@
 class Solution:
     def searchInsert(self, nums: List[int], target: int) -> int:
-        pointer = 0
         ans = -1
-        while pointer < len(nums):
-            if nums[pointer] >= target:
-                ans = pointer
-                break
-            pointer += 1
-
-        # edge case where the insert position is to append on the array
-        if ans == -1:
-            ans = len(nums)
+        start = 0
+        end = len(nums) - 1
+        
+        while start <= end:
+            middle = (start + end) // 2
+            if nums[middle] == target:
+                return middle
+            elif nums[middle] < target:
+                ans = middle + 1
+                start = middle + 1
+            else:
+                ans = middle
+                end = middle - 1
+            
         return ans
