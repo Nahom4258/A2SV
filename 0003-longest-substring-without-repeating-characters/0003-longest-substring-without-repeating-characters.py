@@ -1,6 +1,5 @@
 class Solution:
     def lengthOfLongestSubstring(self, s: str) -> int:
-        _dict = defaultdict(int)
         window = []
         visited = set()
         max_length = 0
