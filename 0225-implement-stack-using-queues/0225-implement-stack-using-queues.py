@@ -5,7 +5,6 @@ class MyStack:
         self.q2 = []
 
     def push(self, x: int) -> None:
-        # print('before: ', self.stack)
         for i in range(len(self.stack)):
             self.q2.append(self.stack[i])
         self.stack = []
@@ -15,8 +14,6 @@ class MyStack:
         for i in range(len(self.q2)):
             self.stack.append(self.q2[i])
         self.q2 = []
-            
-        # print('after: ', self.stack)
 
     def pop(self) -> int:
         for i in range(len(self.stack)):
@@ -33,7 +30,6 @@ class MyStack:
         return popped
 
     def top(self) -> int:
-        print('before: ', self.stack)
         for i in range(len(self.stack)):
             self.q2.append(self.stack[i])
         self.stack = []
