@@ -1,16 +1,22 @@
+class Memoization(object):
+    def __init__(self, f):
+        self.f=f
+        self.memo={}
+    
+    def __call__(self, arg):
+        if not arg in self.memo:
+            self.memo[arg]=self.f(arg)
+        return(self.memo[arg])
+
+def fibonacci(k):
+    if k==1 :
+        return 1
+    elif k==0:
+        return 0
+    else:
+        return fibonacci(k-1) + fibonacci(k-2)
+
 class Solution:
     def fib(self, n: int) -> int:
-        add = 1
-        left_ptr = 0
-        right_ptr = 1
-        ans = [0,1]
-        
-        if n == 0:
-            return 0
-        
-        for i in range(n-1):
-            ans.append(ans[left_ptr] + ans[right_ptr])
-            left_ptr += 1
-            right_ptr += 1
-            
-        return ans[-1]
+        memo_fibo=Memoization(fibonacci)
+        return memo_fibo(n)
