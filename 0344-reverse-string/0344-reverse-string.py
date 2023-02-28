@@ -3,11 +3,16 @@ class Solution:
         """
         Do not return anything, modify s in-place instead.
         """
-        lp = 0
-        rp = len(s) - 1
+        l = 0
+        r = len(s) - 1
         
-        while lp < rp:
-            s[lp], s[rp] = s[rp], s[lp]
+        def swap(l, r):
+            if l >= r:
+                return
+            s[l], s[r] = s[r], s[l]
+            l += 1
+            r -= 1
+            swap(l, r)
             
-            lp += 1
-            rp -= 1
+        swap(l, r)
+        
