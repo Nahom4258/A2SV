@@ -14,21 +14,17 @@ class Solution:
             
             if list1 and list2:
                 if list1.val < list2.val:
-                    temp = list1.next
                     cphead.next = list1
-                    return helper(temp, list2, cphead.next)
+                    return helper(list1.next, list2, cphead.next)
                 else:
-                    temp = list2.next
                     cphead.next = list2
-                    return helper(list1, temp, cphead.next)
+                    return helper(list1, list2.next, cphead.next)
             else:
                 if list1:
-                    temp = list1.next
                     cphead.next = list1
-                    return helper(temp, list2, cphead.next)
+                    return helper(list1.next, list2, cphead.next)
                 else:
-                    temp = list2.next
                     cphead.next = list2
-                    return helper(list1, temp, cphead.next)
+                    return helper(list1, list2.next, cphead.next)
                     
         return helper(list1, list2, cphead)
