@@ -8,7 +8,7 @@ class Solution:
     def isValidBST(self, root: Optional[TreeNode]) -> bool:
         ans = self.inorder(root)
 
-        return ans == sorted(ans) and Counter(set(ans)) == Counter(ans)
+        return ans == sorted(ans) and len(set(ans)) == len(ans)
     
     def inorder(self, root):
         ans = []
