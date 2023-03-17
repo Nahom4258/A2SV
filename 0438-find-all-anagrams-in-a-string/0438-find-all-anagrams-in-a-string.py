@@ -1,39 +1,32 @@
 class Solution:
     def findAnagrams(self, s: str, p: str) -> List[int]:
-        left_ptr, right_ptr = 0, 0
-        p = dict(Counter(p))
+        len_p, len_s = len(p), len(s)
+        dict_p = Counter(p)
         new_str = defaultdict(int)
         ans = []
 
-        while right_ptr < len(s):
-            # if both pointers are on the same letter
-            if left_ptr == right_ptr:
-                new_str = defaultdict(int)
-                curr = s[right_ptr]
-                # if current letter is in 'p' and needs more to equal 'p'
-                if curr in p and new_str[curr] < p[curr]:
-                    new_str[curr] += 1
-                    if new_str == p:
-                        ans.append(left_ptr)
-                        new_str[curr] -= 1
-                        left_ptr += 1
-                    right_ptr += 1
-                else:
-                    left_ptr += 1
-                    right_ptr += 1
-                continue
+        # edge case where 'p' is greater than given string 's'
+        if len_p > len_s:
+            return []
 
-            curr = s[right_ptr]
-            # if current letter is in 'p' and needs more to equal 'p'
-            if curr in p and new_str[curr] < p[curr]:
-                new_str[curr] += 1
-                if new_str == p:
-                    ans.append(left_ptr)
-                    new_str[s[left_ptr]] -= 1
-                    left_ptr += 1
-                right_ptr += 1
+        # the first sliding window
+        for i in range(len_p):
+            new_str[s[i]] += 1
+        if new_str == dict_p:
+            ans.append(0)
+
+        # continue from the previous sliding window
+        for i in range(1, len_s - len_p + 1):
+            # remove previous letter
+            if new_str[s[i-1]] == 1:
+                del new_str[s[i-1]]
             else:
-                new_str[s[left_ptr]] -= 1
-                left_ptr += 1
+                new_str[s[i-1]] -= 1
+            # add current letter
+            new_str[s[i+len_p-1]] += 1
+
+            # check new created string
+            if new_str == dict_p:
+                ans.append(i)
 
         return ans
