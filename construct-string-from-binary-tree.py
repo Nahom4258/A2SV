@@ -12,7 +12,7 @@ class Solution:
             nonlocal string
 
             if not head:
-                return None
+                return
 
             string += str(head.val)
 
@@ -23,13 +23,13 @@ class Solution:
 
             if not head.left and head.right:
                 string += '()'
-                
+
             if head.right:
                 string += '('
                 helper(head.right)
                 string += ')'
             
-            return head.val
+            return
 
         helper(root)
 
