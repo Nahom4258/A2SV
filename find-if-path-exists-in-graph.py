@@ -1,22 +1,27 @@
 class Solution:
     def validPath(self, n: int, edges: List[List[int]], source: int, destination: int) -> bool:
-        graph = defaultdict(list)
-        visited = set()
+        union_graph = {i: i for i in range(n)}
+        size = [1] * n
 
-        for i in range(len(edges)):
-            graph[edges[i][0]].append(edges[i][1])
-            graph[edges[i][1]].append(edges[i][0])
+        def find(a):
+            if union_graph[a] != a:
+                union_graph[a]=find(union_graph[a])
 
-        def dfs(current):
-            if current == destination:
-                return True
+            return union_graph[a]
 
-            visited.add(current)
-            for neighbour in graph[current]:
-                if neighbour not in visited:
-                    if dfs(neighbour):
-                        return True
+        def union(a, b):
+            r_a, r_b = find(a), find(b)
 
-            return False
+            if r_a != r_b:
+                if size[r_a] < size[r_b]:
+                    union_graph[r_a] = r_b
+                    size[r_b] += size[r_a]
+                else:
+                    union_graph[r_b] = r_a
+                    size[r_a] += size[r_b]
 
-        return dfs(source)
+        for a, b in edges:
+            union(a, b)
+        # print('un: ', union_graph)
+
+        return find(source) == find(destination)
