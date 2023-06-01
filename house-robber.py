@@ -17,4 +17,4 @@ class Solution:
         # print('0: ', dp(0, 0))
         # print('mem: ', memo)
 
-        return max(dp(0, 0), dp(1, 0))
+        return (dp(0, 0))
