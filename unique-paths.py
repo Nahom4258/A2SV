@@ -1,18 +1,19 @@
 class Solution:
     def uniquePaths(self, m: int, n: int) -> int:
-        memo = [[0 for i in range(n)] for j in range(m)]
-        memo[m-1][n-1] = 1
+        memo = dict()
 
-        for i in range(m-1, -1, -1):
-            for j in range(n-1, -1, -1):
-                # check up
-                if 0 <= i-1 < m:
-                    memo[i-1][j] += memo[i][j]
+        def dp(row, col):
+            if row == 1 and col == 1:
+                return 1
 
-                # check left
-                if 0 <= j-1 < n:
-                    memo[i][j-1] += memo[i][j]
+            if row <= 0 or col <= 0:
+                return 0
 
-        # print('me: ', memo)
+            if (row, col) not in memo:
+                down = dp(row-1, col)
+                right = dp(row, col-1)
+                memo[(row, col)] = down + right
 
-        return memo[0][0]
+            return memo[(row, col)]
+
+        return dp(m, n)
