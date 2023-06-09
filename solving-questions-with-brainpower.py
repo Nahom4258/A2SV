@@ -1,7 +1,6 @@
 class Solution:
     def mostPoints(self, questions: List[List[int]]) -> int:
         memo = dict()
-        ans = 0
 
         def dp(index):
             if index >= len(questions):
@@ -12,12 +11,7 @@ class Solution:
                 not_taken = dp(index+1)
 
                 memo[index] = max(taken, not_taken)
-                
-                nonlocal ans
-                ans = max(memo[index], ans)
 
             return memo[index]
 
-        dp(0)
-
-        return ans
+        return dp(0)
