@@ -1,25 +1,23 @@
 class Solution:
     def checkIfPrerequisite(self, numCourses: int, prerequisites: List[List[int]], queries: List[List[int]]) -> List[bool]:
-        graph = defaultdict(list)
-        indegree = defaultdict(int)
+        n = numCourses
+        path = [[False]*n for _ in range(n)]
 
-        for a, b in prerequisites:
-            graph[a].append(b)
+        # fill node with itself
+        for i in range(n):
+            path[i][i] = True
+        
+        # fill path from prereq
+        for s, e in prerequisites:
+            path[s][e] = True
 
-        def is_prereq(a, target, visited):
-            visited.add(a)
-            if a == target:
-                return True
-
-            ret = False
-            for child in graph[a]:
-                if child not in visited:
-                    ret = ret or is_prereq(child, target, visited)
-
-            return ret
+        for k in range(n):
+            for j in range(n):
+                for i in range(n):
+                    path[i][j] = path[i][j] or (path[i][k] and path[k][j])
 
         ans = []
-        for a, b in queries:
-            ans.append(is_prereq(a, b, set()))
+        for s, e in queries:
+            ans.append(path[s][e])
 
         return ans
