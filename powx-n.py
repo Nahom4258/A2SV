@@ -1,18 +1,5 @@
 class Solution:
     def myPow(self, x: float, n: int) -> float:
-        # if n == 0:
-        #     return 1
-
-        # def pow(num, times):
-        #     if times < 2:
-        #         return num
-
-        #     return pow(num * x, times - 1)
-
-        # ans = pow(x, abs(n))
-
-        # return ans if n >= 0 else 1/ans
-
         if n == 0:
             return 1
         
