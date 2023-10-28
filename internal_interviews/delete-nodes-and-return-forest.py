@@ -9,26 +9,25 @@ class Solution:
         to_del = set(to_delete)
         ans = []
         
-        def helper(node):
-            if node.val in to_del:
-                nonlocal ans
-                if node.left and node.left.val not in to_del:
-                    ans.append(node.left)
-                if node.right and node.right.val not in to_del:
-                    ans.append(node.right)
+        def helper(node, ans):
+            if not node:
+                return None
 
-            if node.left:
-                helper(node.left)
-                if node.left.val in to_del:
-                    node.left = None
-            if node.right:
-                helper(node.right)
-                if node.right.val in to_del:
-                    node.right = None
+            node.left = helper(node.left, ans)
+            node.right = helper(node.right, ans)
+
+            if node.val in to_del:
+                if node.left:
+                    ans.append(node.left)
+                if node.right:
+                    ans.append(node.right)
+                return None
+
+            return node
 
         if root.val not in to_del:
             ans.append(root)
 
-        helper(root)
+        helper(root, ans)
 
         return ans
