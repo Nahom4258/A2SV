@@ -2,14 +2,20 @@ class Solution:
     def maximumPopulation(self, logs: List[List[int]]) -> int:
         years = [0] * 101
 
+        def idx(i):
+            return i-1950
+
         for birth, death in logs:
-            for i in range(birth, death):
-                years[i-1950] += 1
+            years[idx(birth)] += 1
+            years[idx(death)] -= 1
 
-        maxim = max(years)
+        add = 0
+        ans = 1950
+        maxim = 0
+        for i, num in enumerate(years):
+            add += num
+            if add > maxim:
+                ans = i+1950
+                maxim = add
 
-        for i in range(101):
-            if years[i] == maxim:
-                return i+1950
-
-        return 0
+        return ans
