@@ -1,7 +1,7 @@
 class Solution:
     def findPeakElement(self, nums: List[int]) -> int:
         n = len(nums)
-        left, right = 0 , n-1
+        left, right = 0, n-1
 
         while left < right:
             mid = (left + right)//2
